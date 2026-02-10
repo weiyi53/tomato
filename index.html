@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CICE-YOLO: Tomato Ripeness Detection</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+    <!-- Header -->
+    <header>
+        <h1>CICE-YOLO: An improved YOLO-based network for tomato ripeness detection in Greenhouse</h1>
+        <p>
+            Ming Lu¹, Ricardo da Silva Torres², Fanjia Menga¹, Xin Wang¹<br>
+            ¹ China Agricultural University<br>
+            ² Wageningen University & Research
+        </p>
+        <div class="links">
+            <a href="http://dx.doi.org/10.2139/ssrn.6173742" target="_blank">📄 Paper</a>
+            <a href="https://github.com/weiyi53/tomato/tree/main/yolo" target="_blank">💻 Code <span style="color:#999">(Coming Soon)</span></a>
+            <a href="https://github.com/weiyi53/tomato/tree/main/yolo/dataset" target="_blank">📊 Data</a>
+        </div>
+    </header>
+
+    <hr>
+
+    <!-- TL;DR -->
+    <section>
+        <h2>TL;DR</h2>
+        <p>
+            Tomato ripeness recognition in greenhouses is challenged by extreme illumination variations, including day and night conditions and supplemental lighting. By applying consistent preprocessing and enhanced multi-scale feature interaction, the model effectively localizes dense and occluded fruit clusters while maintaining high accuracy and real-time performance. It also generalizes well across tomato varieties, including yellow tomatoes.
+        </p>
+    </section>
+
+    <hr>
+
+    <!-- Overview -->
+    <section>
+        <h2>Overview</h2>
+        <p>
+            In practical greenhouse harvesting scenarios, tomato picking robots face persistent perception challenges caused by extreme illumination variations between daytime and nighttime operation, widespread supplemental lighting, and local brightness inconsistencies. Existing tomato ripeness recognition models, typically developed under uniform lighting, fail to deliver reliable performance across the full range of real greenhouse environments.
+        </p>
+        <p>
+            To address this gap, we propose CICE-YOLO, a unified tomato ripeness recognition framework robust to daytime sunlight, nighttime conditions, and artificial supplemental lighting. This work represents the first systematic attempt to handle the large day-night illumination discrepancy within a single deployable model for greenhouse harvesting robots.
+        </p>
+    </section>
+
+    <hr>
+
+    <!-- Method -->
+    <section>
+        <h2>Method</h2>
+        <!-- 新增Method图片 -->
+        <div class="method-img">
+            <img src="D:/ope/CICE/images/A.jpg" alt="CICE-YOLO Model Architecture">
+            <p class="img-caption">Figure 1: CICE-YOLO model architecture for tomato ripeness detection.</p>
+        </div>
+        <ul>
+            <li><strong>Dataset Processing:</strong> Applies consistent preprocessing to images across day, night, and supplemental lighting conditions to stabilize visual representations and reduce the impact of illumination variations.</li>
+            <li><strong>CHet Backbone:</strong> Introduces heterogeneous convolutions to improve feature extraction for tomatoes of varying sizes and appearances.</li>
+            <li><strong>IBiFPN Neck:</strong> Employs an Improved Bidirectional Feature Pyramid Network with learnable fusion weights to enable adaptive multi-scale feature aggregation, improving detection of occluded or partially visible fruits.</li>
+            <li><strong>EIoU-based Detection Head:</strong> Uses EIoU loss to decouple width and height regression errors, resulting in more accurate bounding-box localization.</li>
+        </ul>
+    </section>
+
+    <hr>
+
+    <!-- Experiments -->
+    <section>
+        <h2> Experiments</h2>
+        <p>
+            The approach is validated through extensive experiments in real greenhouse environments, including daytime, nighttime, and supplemental lighting scenarios.
+        </p>
+        <p>Red tomato experiments confirm high accuracy under complex lighting and occlusion.</p>
+	<!-- 新增模型对比三线表格 -->
+    <div class="exp-table" style="margin-top: 40px;">
+ <p class="table-caption">Table 1: Performance comparison of CICE-YOLO with mainstream detection models.</p>
+        <table>
+            <thead>
+                <tr>
+                    <th>Network</th>
+                    <th>P (%)</th>
+                    <th>R (%)</th>
+                    <th>mAP50 (%)</th>
+                    <th>F1 (%)</th>
+                    <th>Model Size (M)</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>CICE-YOLO</td>
+                    <td>84.2</td>
+                    <td>79.6</td>
+                    <td>85.9</td>
+                    <td>82.0</td>
+                    <td>6.2</td>
+                </tr>
+                <tr>
+                    <td>YOLOv10n</td>
+                    <td>81.3</td>
+                    <td>76.9</td>
+                    <td>81.7</td>
+                    <td>79.0</td>
+                    <td>5.8</td>
+                </tr>
+                <tr>
+                    <td>YOLOv10s</td>
+                    <td>81.4</td>
+                    <td>80.1</td>
+                    <td>82.3</td>
+                    <td>80.0</td>
+                    <td>16.5</td>
+                </tr>
+                <tr>
+                    <td>YOLOv8n</td>
+                    <td>75.9</td>
+                    <td>77.7</td>
+                    <td>78.7</td>
+                    <td>77.0</td>
+                    <td>6.2</td>
+                </tr>
+                <tr>
+                    <td>YOLOv8s</td>
+                    <td>80.5</td>
+                    <td>80.1</td>
+                    <td>81.6</td>
+                    <td>80.0</td>
+                    <td>22.5</td>
+                </tr>
+                <tr>
+                    <td>SSD</td>
+                    <td>81.5</td>
+                    <td>67.6</td>
+                    <td>78.7</td>
+                    <td>73.6</td>
+                    <td>23.8</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+        <p>Additional experiments on yellow tomato greenhouses demonstrate the model’s generalization capability across varieties with different color distributions.</p>
+<!-- 新增的实验结果三线表格 -->
+   	 <div class="exp-table">
+	 <p class="table-caption">Table 2: Experimental results of different networks on dataset2 (tomato ripeness detection).</p>
+      	  	<table>
+            	<thead>
+               	 <tr>
+                    <th>Network</th>
+                    <th>P (%)</th>
+                    <th>R (%)</th>
+                    <th>mAP50 (%)</th>
+                    <th>F1 (%)</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>original-dataset2-YOLOv10n</td>
+                    <td>59.9</td>
+                    <td>59.5</td>
+                    <td>59.2</td>
+                    <td>55.0</td>
+                </tr>
+                <tr>
+                    <td>illumination-corrected-dataset2-YOLOv10n</td>
+                    <td>64.9</td>
+                    <td>72.7</td>
+                    <td>70.1</td>
+                    <td>68.0</td>
+                </tr>
+                <tr>
+                    <td>original-dataset2-CICE-YOLO</td>
+                    <td>65.5</td>
+                    <td>75.0</td>
+                    <td>69.9</td>
+                    <td>69.0</td>
+                </tr>
+                <tr>
+                    <td>illumination-corrected-dataset2-CICE-YOLO</td>
+                    <td>71.4</td>
+                    <td>76.8</td>
+                    <td>76.3</td>
+                    <td>73.0</td>
+                </tr>
+            </tbody>
+        </table>
+       
+    </div>
+        <p>Computational efficiency and resource consumption are analyzed, with targeted optimizations ensuring suitability for real-time robotic deployment.</p>
+
+<!-- 新增Method图片 -->
+        <div class="method-img">
+            <img src="D:/ope/CICE/images/model-FPS.jpg" alt="model">
+            <p class="img-caption">Figure 2: Comparison of parameters, mAP50, and FPS among YOLOv10n, YOLOv10n + IBiFPN, YOLOv10n + IBiFPN +CHet and CICE-YOLO</p>
+        </div>
+
+        <p><strong>Public Release:</strong> A comprehensive greenhouse dataset covering all lighting scenarios for red and yellow tomatoes, along with trained detection models, is provided to support reproducibility and future research in agricultural vision under challenging illumination conditions.</p>
+    </section>
+
+    <hr>
+
+    <!-- Citation & License -->
+    <section>
+        <h2>Citation</h2>
+        <pre>
+@article{Lu2026CICEYOLO,
+  title={CICE-YOLO: An improved YOLO-based network for tomato ripeness detection in Greenhouse},
+  author={Ming Lu, Ricardo da Silva Torres, Fanjia Menga, Xin Wang},
+  journal={},
+  year={2026}
+}
+        </pre>
+
+        <h2>License</h2>
+        <p>This project is released under the MIT License.</p>
+    </section>
+
+    <footer>
+        <p>© 2026 CICE-YOLO Project</p>
+    </footer>
+
+</body>
+</html>

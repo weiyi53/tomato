@@ -1,11 +1,187 @@
-body {
-    font-family: Arial, sans-serif;
-    background-color: #f4f4f4;
+/* 全局重置与基础样式 - 复刻Botany-Bot简洁学术风 */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Helvetica Neue", Arial, sans-serif;
     color: #333;
-    line-height: 1.6;
-    padding: 20px;
 }
 
-h1 {
-    color: #2a7ae2;
+body {
+    max-width: 1000px; /* 固定宽度，居中显示 */
+    margin: 0 auto;    /* 页面整体居中 */
+    padding: 60px 20px;/* 上下留白，左右自适应 */
+    line-height: 1.7;  /* 舒适的行高，提升可读性 */
+    background-color: #ffffff;
+}
+
+/* 头部样式 - 居中排版，匹配Botany-Bot风格 */
+header {
+    text-align: center; /* 所有头部内容居中 */
+    margin-bottom: 40px;
+}
+
+header h1 {
+    font-size: 2.2em;
+    font-weight: 600;
+    margin-bottom: 25px;
+    color: #222;
+    line-height: 1.4; /* 标题换行更美观 */
+}
+
+header p {
+    font-size: 1.1em;
+    margin-bottom: 20px;
+    color: #444;
+}
+
+/* 链接按钮样式 - 复刻Paper/Code/Data按钮交互 */
+.links {
+    margin-top: 20px;
+}
+
+.links a {
+    display: inline-block;
+    margin: 0 12px;
+    padding: 10px 20px;
+    border: 1px solid #333;
+    border-radius: 4px;
+    text-decoration: none;
+    font-size: 1em;
+    background-color: #fff;
+    transition: background-color 0.2s ease; /* hover平滑过渡 */
+}
+
+.links a:hover {
+    background-color: #f5f5f5; /* hover时浅灰背景，提升交互感 */
+}
+
+/* 分隔线样式 - 轻量浅灰色，匹配学术页面风格 */
+hr {
+    border: none;
+    border-top: 1px solid #eeeeee;
+    margin: 40px 0;
+}
+
+/* 章节样式 - 标题+内容排版优化 */
+section {
+    margin-bottom: 30px;
+}
+
+section h2 {
+    font-size: 1.6em;
+    font-weight: 600;
+    margin-bottom: 15px;
+    color: #222;
+    border-bottom: 1px solid #eee; /* 标题下浅分隔线，增强层级 */
+    padding-bottom: 8px;
+}
+
+section p {
+    font-size: 1.05em;
+    margin-bottom: 15px;
+    color: #444;
+}
+
+/* 列表样式 - Method部分ul优化 */
+section ul {
+    margin-left: 30px;
+    margin-bottom: 15px;
+}
+
+section ul li {
+    font-size: 1.05em;
+    margin-bottom: 10px;
+    color: #444;
+}
+
+/* 引用样式 - Citation代码块优化 */
+pre {
+    background-color: #f8f8f8; /* 浅灰背景，区分代码块 */
+    padding: 20px;
+    border-radius: 4px;
+    overflow-x: auto; /* 代码过长时横向滚动 */
+    font-family: "Courier New", monospace;
+    font-size: 0.95em;
+    margin: 15px 0 25px 0;
+}
+
+/* Method章节图片样式 - 复刻Botany-Bot图片排版 */
+.method-img {
+    text-align: center; /* 图片居中 */
+    margin: 30px 0;     /* 上下留白，和内容区分 */
+}
+
+.method-img img {
+    max-width: 100%;    /* 图片自适应页面宽度，不超出 */
+    height: auto;       /* 保持宽高比 */
+    border-radius: 4px; /* 轻微圆角，提升视觉感 */
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1); /* 轻量阴影，突出图片 */
+}
+
+.method-img .img-caption {
+    font-size: 0.95em;  /* 图片说明文字稍小 */
+    color: #555;        /* 浅灰色，不抢焦点 */
+    margin-top: 10px;   /* 和图片保持间距 */
+    font-style: italic; /* 斜体，符合学术图片说明风格 */
+}
+
+/* 实验结果三线表格样式 - 学术标准三线表 */
+.exp-table {
+    margin: 30px 0;       /* 上下留白 */
+    overflow-x: auto;     /* 小屏幕下表格横向滚动 */
+}
+
+.exp-table table {
+    width: 100%;          /* 表格占满容器宽度 */
+    border-collapse: collapse; /* 合并边框 */
+    font-size: 1.0em;
+    text-align: center;   /* 所有内容居中 */
+}
+
+/* 三线表核心：仅保留上、下、表头下三条线 */
+.exp-table table thead tr {
+    border-bottom: 2px solid #333; /* 表头下粗线 */
+}
+.exp-table table thead {
+    border-top: 2px solid #333;    /* 表格顶部粗线 */
+}
+.exp-table table tbody tr:last-child {
+    border-bottom: 1px solid #333; /* 表格底部细线 */
+}
+
+/* 表头样式 */
+.exp-table th {
+    padding: 12px 8px;    /* 内边距 */
+    font-weight: 600;
+    color: #222;
+}
+
+/* 表格内容样式 */
+.exp-table td {
+    padding: 10px 8px;    /* 内边距 */
+    color: #444;
+    border: none;         /* 取消所有单元格边框 */
+}
+
+/* 表格行交替色（可选，提升可读性） */
+.exp-table tbody tr:nth-child(even) {
+    background-color: #f8f8f8;
+}
+
+/* 表格标题样式 */
+.exp-table .table-caption {
+    font-size: 0.95em;
+    color: #555;
+    margin-top: 10px;
+    font-style: italic;
+    text-align: center;   /* 标题居中 */
+}
+
+/* 页脚样式 - 简洁居中 */
+footer {
+    text-align: center;
+    margin-top: 60px;
+    font-size: 0.95em;
+    color: #666;
 }
